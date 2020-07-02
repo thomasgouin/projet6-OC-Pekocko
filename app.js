@@ -1,13 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const app = express();
+
+const saucesRoutes = require('./routes/Sauces');
+const usersRoutes = require('./routes/Users');
 
 mongoose.connect('mongodb+srv://gouinThomas:SyHwdrX3QSOXpF2l@cluster0-hqadt.mongodb.net/Pekocko?retryWrites=true&w=majority',
     { useNewUrlParser: true,
       useUnifiedTopology: true})
     .then(()=>console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+
+const app = express();
 
 app.use((req,res, next) =>{
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -16,14 +21,10 @@ app.use((req,res, next) =>{
     next();
 });
 
+app.use(bodyParser.json());
 
-app.use((req,res, next)=>{
-    console.log('Requête reçue');
-    next();
-});
+app.use('/api/sauces', saucesRoutes), 
+app.use('/api/auth', usersRoutes),
 
-app.use((req, res, next)=>{
-    res.json()
-});
 
 module.exports = app; 
