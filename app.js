@@ -2,11 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+const identifiants = require('./config/config');
 
 const saucesRoutes = require('./routes/Sauces');
 const usersRoutes = require('./routes/Users');
 
-mongoose.connect('mongodb+srv://gouinThomas:SyHwdrX3QSOXpF2l@cluster0-hqadt.mongodb.net/Pekocko?retryWrites=true&w=majority',
+mongoose.connect(`mongodb+srv://${identifiants.user}:${identifiants.mdp}@cluster0-hqadt.mongodb.net/${identifiants.dbName}?retryWrites=true&w=majority`,
     { useNewUrlParser: true,
       useUnifiedTopology: true})
     .then(()=>console.log('Connexion à MongoDB réussie !'))
