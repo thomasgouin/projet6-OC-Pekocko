@@ -1,5 +1,5 @@
-const http = require('http');
-const app = require('./app');
+const http = require('http'); //On appelle l'objet HTTP de Node 
+const app = require('./app'); //On appelle l'application
 
 const normalizePort = (val) =>{
     const port = parseInt(val, 10);
@@ -12,7 +12,7 @@ const normalizePort = (val) =>{
     }
     return false;
 };
-
+// On indique sur quel PORT doit fonctionner l'application. (Ici port 3000 par défaut ou celui spécifié par l'environnement)
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
