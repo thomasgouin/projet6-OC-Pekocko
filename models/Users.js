@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+const uniqueValidator = require('mongoose-unique-validator'); //permet de s'assurer que l'email sera unique dans la bdd 
 
 const usersSchema = mongoose.Schema({
     email: {type: String, required: true, unique: true},
